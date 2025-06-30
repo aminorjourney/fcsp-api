@@ -367,12 +367,29 @@ def scan_device(host: str = None, devkey: Optional[str] = None, save_results: bo
     
     Args:
         host: IP address of FCSP device (default: from config)
-        devkey: Developer key for API access (default: from config)
+        devkey: Developer key for API access (default: from config, then fallback to known key)
         save_results: Whether to save results to file
         
     Returns:
         dict: Complete scan results
     """
+    # Default devkey if none provided
+    DEFAULT_DEVKEY = "1bcr1ee0j58v9vzvy31n7w0imfz5dqi85tzem7om"
+    
+    # If no devkey provided, try to get from config, then use default
+    if devkey is None:
+        try:
+            config_devkey = get_devkey()
+            if config_devkey:
+                devkey = config_devkey
+                logger.info("Using devkey from configuration")
+            else:
+                devkey = DEFAULT_DEVKEY
+                logger.info("Using default devkey (no config found)")
+        except Exception:
+            devkey = DEFAULT_DEVKEY
+            logger.info("Using default devkey (config error)")
+    
     with FCSP(host, devkey) as fcsp:
         scanner = FCSPScanner(fcsp)
         results = scanner.scan_all()
@@ -391,7 +408,7 @@ def main():
     
     parser = argparse.ArgumentParser(description="Scan FCSP device API endpoints")
     parser.add_argument("host", nargs='?', help="IP address of FCSP device (default: from config)")
-    parser.add_argument("--devkey", help="Developer key (default: from config)")
+    parser.add_argument("--devkey", help="Developer key (default: from config, then known default key)")
     parser.add_argument("--no-save", action="store_true", help="Don't save results to file")
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose logging")
     parser.add_argument("--config", help="Path to configuration file")

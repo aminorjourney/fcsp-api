@@ -21,7 +21,7 @@ def read_requirements():
 
 setup(
     name="fcsp-api",
-    version="0.1.2",
+    version="0.1.3",
     author="Eric Pullen",
     author_email="eric@ericpullen.com",
     description="A Python library for interacting with Ford Charge Station Pro (FCSP) devices via their REST API",
