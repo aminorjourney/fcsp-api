@@ -21,17 +21,17 @@ def read_requirements():
 
 setup(
     name="fcsp-api",
-    version="0.1.0",
+    version="0.1.1",
     author="Eric Pullen",
     author_email="eric@ericpullen.com",
     description="A Python library for interacting with Ford Charge Station Pro (FCSP) devices via their REST API",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
-    url="https://github.com/epullen/fcsp-api",
+    url="https://github.com/ericpullen/fcsp-api",
     project_urls={
-        "Documentation": "https://github.com/epullen/fcsp-api#readme",
-        "Repository": "https://github.com/epullen/fcsp-api.git",
-        "Issues": "https://github.com/epullen/fcsp-api/issues",
+        "Documentation": "https://github.com/ericpullen/fcsp-api#readme",
+        "Repository": "https://github.com/ericpullen/fcsp-api.git",
+        "Issues": "https://github.com/ericpullen/fcsp-api/issues",
     },
     packages=find_packages(),
     classifiers=[
