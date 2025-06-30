@@ -139,8 +139,12 @@ class FCSPStateMonitor:
         # Main monitoring loop
         while self.running:
             try:
-                # Sleep first to avoid immediate polling
-                time.sleep(self.poll_interval)
+                # Sleep in shorter intervals to allow for graceful shutdown
+                sleep_remaining = self.poll_interval
+                while sleep_remaining > 0 and self.running:
+                    sleep_chunk = min(sleep_remaining, 1.0)  # Check every 1 second
+                    time.sleep(sleep_chunk)
+                    sleep_remaining -= sleep_chunk
                 
                 if not self.running:
                     break
