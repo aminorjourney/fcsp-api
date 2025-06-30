@@ -385,7 +385,7 @@ def scan_device(host: str = None, devkey: Optional[str] = None, save_results: bo
         return results
 
 
-if __name__ == "__main__":
+def main():
     """Command line interface for the scanner"""
     import argparse
     
@@ -416,3 +416,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"❌ Scan failed: {e}")
         exit(1)
+
+
+if __name__ == "__main__":
+    main()

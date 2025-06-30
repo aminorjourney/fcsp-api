@@ -9,24 +9,26 @@ description = "A Python library for interacting with Ford Charge Station Pro (FC
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Eric Pullen", email = "eric@ericpullen.com"}
 ]
+keywords = ["ford", "charging", "evse", "electric-vehicle", "home-automation", "iot", "api"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.6",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Home Automation",
     "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: System :: Hardware",
 ]
-requires-python = ">=3.6"
+requires-python = ">=3.8"
 dependencies = [
     "requests>=2.25.0",
     "urllib3>=1.26.0",
@@ -39,7 +41,18 @@ dev = [
     "black>=21.0",
     "flake8>=3.8",
     "mypy>=0.800",
+    "twine>=3.0",
+    "build>=0.10",
 ]
+crypto = [
+    "cryptography>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/epullen/fcsp-api"
+Documentation = "https://github.com/epullen/fcsp-api#readme"
+Repository = "https://github.com/epullen/fcsp-api.git"
+Issues = "https://github.com/epullen/fcsp-api/issues"
 
 [project.scripts]
 fcsp-scanner = "fcsp_api.scanner:main"
