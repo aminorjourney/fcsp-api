@@ -28,7 +28,7 @@ The FCSP device exposes a simple REST API for configuration and monitoring, but 
 
 ## Installation
 ```bash
-git clone https://github.com/yourusername/fcsp-api.git
+git clone https://github.com/ericpullen/fcsp-api.git
 cd fcsp-api
 pip install -e .
 ```
@@ -347,7 +347,7 @@ from fcsp_api import FCSP
 ### Setting Up Development Environment
 
 ```bash
-git clone https://github.com/yourusername/fcsp-api.git
+git clone https://github.com/ericpullen/fcsp-api.git
 cd fcsp-api
 pip install -e ".[dev]"
 ```

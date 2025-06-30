@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fcsp-api"
-version = "0.1.1"
+version = "0.1.2"
 description = "A Python library for interacting with Ford Charge Station Pro (FCSP) devices via their REST API"
 readme = "README.md"
 license = {text = "MIT"}
