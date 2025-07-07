@@ -50,6 +50,8 @@ class FCSPStateMonitor:
         self.previous_state = None
         self.previous_inverter_states = None
         self.running = False
+        self.device_offline = False  # Track if device is offline
+        self.consecutive_errors = 0  # Track consecutive connection failures
         
         # Setup signal handlers for graceful shutdown
         signal.signal(signal.SIGINT, self._signal_handler)
@@ -75,10 +77,26 @@ class FCSPStateMonitor:
                 device_state = charger_info.get('state')
                 inverter_states = [inv.get('state') for inv in inverter_info]
                 
+                # Reset error counters on successful connection
+                if self.device_offline:
+                    print(f"🟢 Device is back online!")
+                    self.device_offline = False
+                    self.consecutive_errors = 0
+                
                 return device_state, inverter_states
                 
         except Exception as e:
-            print(f"❌ Error getting state: {e}")
+            self.consecutive_errors += 1
+            
+            # Only show error message for first few failures
+            if self.consecutive_errors <= 3:
+                print(f"❌ Error getting state: {e}")
+            elif self.consecutive_errors == 4:
+                print(f"🔴 Device appears to be offline. Will continue monitoring for reconnection...")
+                self.device_offline = True
+            elif self.consecutive_errors % 10 == 0:  # Show message every 10th error
+                print(f"⏳ Still waiting for device to come back online... ({self.consecutive_errors} attempts)")
+            
             return None, None
     
     def format_state_change(self, old_state, new_state, old_inverters, new_inverters):
@@ -116,6 +134,7 @@ class FCSPStateMonitor:
         print(f"🔌 FCSP State Monitor")
         print(f"📡 Polling every {self.poll_interval} seconds")
         print(f"🎯 Press Ctrl+C to stop")
+        print(f"💡 Monitor will automatically recover when device comes back online")
         print(f"{'='*50}")
         
         self.running = True
