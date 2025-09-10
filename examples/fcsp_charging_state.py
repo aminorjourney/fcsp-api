@@ -30,8 +30,8 @@ class FCSPChargingStates:
             'connected': True
         },
         'CS02': {
-            'name': 'Charging',
-            'description': 'Vehicle connected and actively charging',
+            'name': 'Transferring Power',
+            'description': 'Vehicle connected and power transferring If no inverter, station is charging. If Inverter connected, power direction depends on Inverter state',
             'icon': '🔋',
             'charging': True,
             'connected': True
@@ -54,14 +54,19 @@ class FCSPChargingStates:
             'icon': '💤'
         },
         '1': {
-            'name': 'Active',
-            'description': 'Inverter possibly active (need confirmation)',
+            'name': 'Power Cut',
+            'description': 'Power cut detected. Inverter preparing to power home',
             'icon': '⚡'
         },
         '2': {
             'name': 'Unknown State 2',
             'description': 'Need to observe this state',
             'icon': '❓'
+        }
+        '5': {
+            'name': 'Backup Power Active',
+            'desctription': 'Power cut in progress, Inverter providing power to home',
+            'icon': '🏠'
         }
     }
 

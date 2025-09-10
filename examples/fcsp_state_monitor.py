@@ -25,8 +25,8 @@ DEVICE_STATES = {
         'icon': '🟡'
     },
     'CS02': {
-        'name': 'Charging',
-        'description': 'Vehicle connected and actively charging',
+        'name': 'Transferring Power',
+        'description': 'Vehicle connected and actively either charging, or powering home',
         'icon': '🔋'
     },
     'CS03': {

@@ -239,7 +239,7 @@ python examples/fcsp_state_monitor.py --config /path/to/config.json
 The monitor recognizes these device states:
 - **CS00** 🟢 - Available (No vehicle connected)
 - **CS01** 🟡 - Connected (Not Charging) 
-- **CS02** 🔋 - Charging (Vehicle connected and charging)
+- **CS02** 🔋 - Power Transfer (Vehicle connected and either charging, or power transfering to home - State depenedent on presense of Home Integration System)
 - **CS03** 🔴 - Error/Fault (Error condition)
 
 ### Perfect For
